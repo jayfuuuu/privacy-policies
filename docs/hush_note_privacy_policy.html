@@ -28,6 +28,7 @@
     ul { padding-left: 24px; }
     li { margin-bottom: 8px; }
     a { color: #7c3aed; }
+    code { background: #f3f4f6; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
     .updated { margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; color: #999; font-size: 13px; }
   </style>
 </head>
@@ -37,42 +38,52 @@
     <p class="subtitle">Hush Notes – Chrome Extension</p>
 
     <h2>Overview</h2>
-    <p>Hush Notes is a browser extension that provides a password-protected notes and to-do list in your browser sidebar. This privacy policy explains what data is collected, how it is used, and how it is stored.</p>
+    <p>Hush Notes is a browser extension that provides an encrypted, password-protected notes and to-do list in your browser sidebar. All data is encrypted and stored locally on your device. This privacy policy explains what data is collected, how it is secured, and how it is stored.</p>
+
+    <h2>Encryption and Security</h2>
+    <p>Hush Notes uses industry-standard cryptography to protect your data:</p>
+    <ul>
+      <li><strong>Password handling:</strong> Your password is never stored. It is used to derive a cryptographic key via <strong>PBKDF2</strong> (100,000 iterations, SHA-256). A verification token (encrypted known plaintext) is stored to validate the password on subsequent unlocks.</li>
+      <li><strong>Note encryption:</strong> All notes and to-dos are encrypted with <strong>AES-256-GCM</strong> before being written to storage. Data is only readable when unlocked with the correct password.</li>
+      <li><strong>Key lifecycle:</strong> The encryption key exists only in memory while the extension is unlocked. It is cleared immediately when the extension is locked or the browser is restarted.</li>
+      <li><strong>Brute-force protection:</strong> After 5 consecutive failed password attempts, the extension enforces exponential backoff delays.</li>
+    </ul>
 
     <h2>Data Collection and Usage</h2>
     <p>The extension stores the following data <strong>entirely on the user's device</strong>:</p>
     <ul>
-      <li><strong>Password hash:</strong> The user's password is hashed using SHA-256 before storage. The original plaintext password is never stored.</li>
-      <li><strong>Notes and to-dos:</strong> All note content, titles, types, priorities, tags, and groups are stored locally using Chrome's <code>chrome.storage.local</code> API.</li>
+      <li><strong>Encrypted notes and to-dos:</strong> All note content, titles, types, priorities, tags, and groups are encrypted with AES-256-GCM and stored locally using Chrome's <code>chrome.storage.local</code> API.</li>
       <li><strong>User preferences:</strong> Settings such as auto-lock duration, custom tags, and groups are stored locally on the user's device.</li>
+      <li><strong>Password verification token:</strong> An encrypted token used to verify the password. The plaintext password is never stored.</li>
     </ul>
 
     <h2>Third-Party Services</h2>
     <p>Hush Notes does <strong>not</strong> connect to any third-party services, APIs, or external servers. All functionality operates entirely offline within the browser.</p>
+    <p>The extension includes an optional "Buy me a coffee" button that opens a PayPal donation page (<code>paypal.me</code>) in a new browser tab. This action does not transmit any extension data — it simply navigates to an external URL.</p>
 
     <h2>Data Storage</h2>
     <ul>
-      <li>All user data is stored <strong>locally on the user's device</strong> using Chrome's storage API.</li>
-      <li>No data is ever transmitted over the network.</li>
+      <li>All user data is encrypted and stored <strong>locally on the user's device</strong> using Chrome's storage API.</li>
+      <li>No note content, passwords, or personal data is ever transmitted over the network.</li>
       <li>No data is sent to the extension developer or any server controlled by the extension developer.</li>
       <li>No analytics, tracking, or telemetry data is collected.</li>
     </ul>
 
     <h2>Data Sharing</h2>
-    <p>The extension does not sell, share, or transfer user data to any third party. No data leaves the user's device under any circumstances.</p>
+    <p>The extension does not sell, share, or transfer user data to any third party. No user data leaves the device under any circumstances.</p>
 
     <h2>Permissions</h2>
     <p>The extension requests the following browser permissions:</p>
     <ul>
       <li><strong>sidePanel:</strong> Required to display the notes interface in the browser sidebar.</li>
-      <li><strong>storage / unlimitedStorage:</strong> Required to save notes, settings, and the password hash locally on the device.</li>
+      <li><strong>storage / unlimitedStorage:</strong> Required to save encrypted notes, settings, and the password verification token locally on the device.</li>
     </ul>
 
     <h2>User Control</h2>
     <ul>
       <li>Users can export all notes as Markdown files at any time from the Settings tab.</li>
       <li>Users can reset all data (notes and settings) at any time from the Settings tab.</li>
-      <li>Users can change their password at any time from the Settings tab.</li>
+      <li>Users can change their password at any time from the Settings tab. Notes are re-encrypted with the new key automatically.</li>
       <li>Uninstalling the extension removes all locally stored data.</li>
     </ul>
 
