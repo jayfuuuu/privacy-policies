@@ -13,4 +13,4 @@ This repository hosts privacy policy pages for my personal projects, served via 
 
 ## Contact
 
-If you have any questions, reach out at [lfmbs1027@gmail.com](mailto:lfmbs1027@gmail.com).
+If you have any questions, reach out at [jay.fu.ai@gmail.com](mailto:jay.fu.ai@gmail.com).
