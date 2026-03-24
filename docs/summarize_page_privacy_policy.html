@@ -39,13 +39,24 @@
     <h2>Overview</h2>
     <p>Summarize Page is a browser extension that extracts article content from the current web page and sends it to a third-party AI service to generate a summary. This privacy policy explains what data is collected, how it is used, and how it is stored.</p>
 
-    <h2>Data Collection and Usage</h2>
+    <h2>Personal Data</h2>
+    <p>Summarize Page does <strong>not</strong> collect any personally identifiable information (PII) such as names, email addresses, or device identifiers. The extension does not require account creation or login. The only data processed relates to the content of web pages the user explicitly chooses to summarize.</p>
+
+    <h2>Data Collection</h2>
     <p>The extension collects and processes the following data <strong>only when the user explicitly clicks the "Summarize" button</strong>:</p>
     <ul>
-      <li><strong>Page content:</strong> The article text, title, publication date, source domain, and URL of the currently active tab are extracted for summarization.</li>
+      <li><strong>Page content:</strong> The article text (up to 12,000 characters), title, publication date, source domain, and URL of the currently active tab are extracted for summarization. Content is extracted from the page's DOM via an injected content script that targets article regions and strips non-content elements (scripts, ads, navigation, etc.).</li>
       <li><strong>API keys:</strong> The user provides their own API key for OpenAI or Anthropic. This key is stored locally on the user's device using Chrome's <code>chrome.storage.local</code> API.</li>
       <li><strong>User preferences:</strong> Settings such as the selected AI provider, model, and output language are stored locally on the user's device.</li>
-      <li><strong>Summarization history:</strong> Past summaries (including the article title, URL, domain, model used, token counts, estimated cost, and the generated summary) are stored locally on the user's device.</li>
+      <li><strong>Summarization history:</strong> Past summaries (including the article title, URL, domain, model used, token counts, estimated cost, and the generated summary) are stored locally on the user's device. Up to 200 history entries are retained.</li>
+    </ul>
+
+    <h2>Data Processing</h2>
+    <p>Data is processed in the following ways:</p>
+    <ul>
+      <li><strong>Content extraction:</strong> When the user clicks "Summarize", a content script is injected into the active tab to extract article text and metadata from the page's DOM. This happens locally in the browser with no network request.</li>
+      <li><strong>Summarization:</strong> The extracted content (article text, title, source, date, and URL) along with a system prompt is sent to the user's selected AI provider (OpenAI or Anthropic) via their API. The user's own API key is used for authentication. The AI-generated summary is displayed to the user and saved to local history. Token usage from the API response is used to calculate an estimated cost, which is also stored locally.</li>
+      <li><strong>All other operations</strong> (viewing history, changing settings) are performed entirely locally with no network activity.</li>
     </ul>
 
     <h2>Third-Party Services</h2>
@@ -56,15 +67,31 @@
     </ul>
     <p>The data sent to these services is governed by their respective privacy policies. The extension developer does not have access to the data transmitted between the user and these API providers.</p>
 
-    <h2>Data Storage</h2>
+    <h2>Data Storage and Retention</h2>
     <ul>
       <li>All user data (API keys, preferences, and history) is stored <strong>locally on the user's device</strong> using Chrome's storage API.</li>
       <li>No data is sent to the extension developer or any server controlled by the extension developer.</li>
       <li>No analytics, tracking, or telemetry data is collected.</li>
+      <li>Summarization history is retained locally until the user manually clears it. A maximum of 200 entries are stored; older entries beyond this limit are automatically removed.</li>
+      <li>Settings and API keys are retained until the user changes or clears them, or uninstalls the extension.</li>
     </ul>
+
+    <h2>Data Security</h2>
+    <p>All data is stored locally on the user's device using Chrome's <code>chrome.storage.local</code> API and is not accessible to other extensions or websites. API keys are transmitted only to the user's chosen AI provider (OpenAI or Anthropic) via HTTPS-encrypted connections and are included solely in request headers for authentication. No data is stored on any external server controlled by the extension developer.</p>
 
     <h2>Data Sharing</h2>
     <p>The extension does not sell, share, or transfer user data to any third party, except for the transmission of page content to the user's chosen AI provider as described above.</p>
+    <p>The extension includes an optional donation button that opens a PayPal page (<code>paypal.me</code>) in a new browser tab. This action does not transmit any extension data — it simply navigates to an external URL.</p>
+
+    <h2>Permissions</h2>
+    <p>The extension requests the following browser permissions:</p>
+    <ul>
+      <li><strong>activeTab:</strong> Required to access the content of the currently active tab when the user initiates a summary.</li>
+      <li><strong>scripting:</strong> Required to inject the content extraction script into the active tab.</li>
+      <li><strong>storage:</strong> Required to save summarization history, user settings, and the API key locally on the device.</li>
+      <li><strong>sidePanel:</strong> Required to display the summarization interface in the browser sidebar.</li>
+      <li><strong>host_permissions (<code>&lt;all_urls&gt;</code>):</strong> Required to allow the content extraction script to run on any webpage the user wishes to summarize.</li>
+    </ul>
 
     <h2>User Control</h2>
     <ul>
@@ -79,7 +106,7 @@
     <h2>Contact</h2>
     <p>If you have any questions or concerns about this privacy policy, please contact us at <a href="mailto:jay.fu.ai@gmail.com">jay.fu.ai@gmail.com</a>.</p>
 
-    <p class="updated">Effective date: March 14, 2026</p>
+    <p class="updated">Effective date: March 24, 2026</p>
   </div>
 </body>
 </html>
