@@ -40,12 +40,24 @@
     <h2>Overview</h2>
     <p>Holy Jiaobei! is a browser extension that simulates the traditional Taiwanese folk practice of throwing jiaobei (筊杯) and drawing fortune sticks (籤詩) from Tu Di Gong (土地公). It optionally uses AI-powered services to interpret fortune results. This privacy policy explains what data is collected, how it is used, and how it is stored.</p>
 
-    <h2>Data Collection and Storage</h2>
-    <p>The extension stores the following data <strong>locally on the user's device</strong> using Chrome's <code>chrome.storage.local</code> API:</p>
+    <h2>Personal Data</h2>
+    <p>Holy Jiaobei! does <strong>not</strong> collect any personally identifiable information (PII) such as names, email addresses, or device identifiers. The extension does not require account creation or login.</p>
+    <p>The extension's interface includes ritual framing text that references traditional customs (e.g., reporting one's name or address to the deity). This is purely decorative context — the extension does <strong>not</strong> provide input fields for this information and does not collect or transmit it. However, if a user voluntarily includes personal information in the free-text question field, that text may be sent to the selected AI provider when requesting an AI interpretation.</p>
+
+    <h2>Data Collection</h2>
+    <p>The extension collects and stores the following data <strong>locally on the user's device</strong> using Chrome's <code>chrome.storage.local</code> API:</p>
     <ul>
-      <li><strong>Fortune history:</strong> Fortune results, user-entered questions, and AI interpretations are saved locally so users can review past readings.</li>
+      <li><strong>Fortune history:</strong> Each reading saves the fortune stick number, fortune level, fortune poem text, the user's question, and any AI interpretation. Up to 200 history entries are retained locally.</li>
       <li><strong>User preferences:</strong> Settings such as interface language, AI provider, and selected model are stored locally.</li>
       <li><strong>API key:</strong> If the user enables AI interpretation, their API key (for OpenAI or Anthropic) is stored locally on the device. The key is never transmitted to the extension developer or any server other than the chosen AI provider.</li>
+    </ul>
+
+    <h2>Data Processing</h2>
+    <p>Data is processed in the following ways:</p>
+    <ul>
+      <li><strong>Fortune generation:</strong> Jiaobei outcomes and fortune stick draws are generated locally using random number generation. No network request is involved.</li>
+      <li><strong>AI interpretation (optional):</strong> When the user explicitly clicks the "AI Interpret" button, the fortune stick number, fortune level, fortune poem text, and the user's question are assembled into a prompt and sent to the selected AI provider's API. The AI response is displayed to the user and optionally saved to local history. Token usage from the API response is used to calculate an estimated cost, which is also stored locally.</li>
+      <li><strong>All other operations</strong> (displaying history, changing settings, switching languages) are performed entirely locally with no network activity.</li>
     </ul>
 
     <h2>Third-Party Services</h2>
@@ -57,12 +69,17 @@
     <p>No data is sent to any third-party service unless the user explicitly clicks the "AI Interpret" button. Core functionality (throwing jiaobei and drawing fortune sticks) works entirely offline.</p>
     <p>The extension includes an optional donation button that opens a PayPal page (<code>paypal.me</code>) in a new browser tab. This action does not transmit any extension data — it simply navigates to an external URL.</p>
 
-    <h2>Data Storage</h2>
+    <h2>Data Storage and Retention</h2>
     <ul>
       <li>All user data (history, settings, API key) is stored <strong>locally on the user's device</strong> using Chrome's storage API.</li>
       <li>No user data is sent to the extension developer or any server controlled by the extension developer.</li>
       <li>No analytics, tracking, or telemetry data is collected.</li>
+      <li>Fortune history is retained locally until the user manually deletes individual entries or clears all history. A maximum of 200 entries are stored; older entries beyond this limit are automatically removed.</li>
+      <li>Settings and API keys are retained until the user changes or clears them, or uninstalls the extension.</li>
     </ul>
+
+    <h2>Data Security</h2>
+    <p>All data is stored locally on the user's device using Chrome's <code>chrome.storage.local</code> API and is not accessible to other extensions or websites. API keys are transmitted only to the user's chosen AI provider (OpenAI or Anthropic) via HTTPS-encrypted connections and are included solely in request headers for authentication. No data is stored on any external server controlled by the extension developer.</p>
 
     <h2>Data Sharing</h2>
     <p>The extension does not sell, share, or transfer user data to any third party. The only external communication occurs when the user explicitly requests an AI interpretation, in which case fortune data and the user's question are sent to the selected AI provider (OpenAI or Anthropic) using the user's own API key.</p>
@@ -88,7 +105,7 @@
     <h2>Contact</h2>
     <p>If you have any questions or concerns about this privacy policy, please contact us at <a href="mailto:lfmbs1027@gmail.com">lfmbs1027@gmail.com</a>.</p>
 
-    <p class="updated">Effective date: March 21, 2026</p>
+    <p class="updated">Effective date: March 24, 2026</p>
   </div>
 </body>
 </html>
