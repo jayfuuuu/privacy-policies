@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy – Soul Guide</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.7;
+      color: #1a1a1a;
+      background: #fafafa;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 12px;
+      padding: 48px 40px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    h1 { font-size: 28px; margin-bottom: 8px; }
+    .subtitle { color: #666; font-size: 14px; margin-bottom: 32px; }
+    h2 { font-size: 20px; margin: 28px 0 12px; }
+    p, li { font-size: 15px; margin-bottom: 12px; }
+    ul { padding-left: 24px; }
+    li { margin-bottom: 8px; }
+    a { color: #7c3aed; }
+    .updated { margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; color: #999; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Privacy Policy</h1>
+    <p class="subtitle">Soul Guide – Chrome Extension</p>
+
+    <h2>Overview</h2>
+    <p>Soul Guide is a browser extension that provides Scripture-based encouragement and guidance. It includes a built-in Bible reader (King James Version) and an optional AI-powered guidance feature that uses a third-party AI service to deliver personalized responses rooted in Scripture. This privacy policy explains what data is collected, how it is used, and how it is stored.</p>
+
+    <h2>Personal Data</h2>
+    <p>Soul Guide does <strong>not</strong> collect any personally identifiable information (PII) such as names, email addresses, or device identifiers. The extension does not require account creation or login. The only user-generated data processed relates to the text the user explicitly submits for spiritual guidance.</p>
+
+    <h2>Data Collection</h2>
+    <p>The extension collects and processes the following data:</p>
+    <ul>
+      <li><strong>User concern text:</strong> When the user explicitly types a concern and clicks the send button in the Guidance tab, the text (up to 500 characters) is processed for AI-based Scripture guidance. This text is <strong>not</strong> stored locally or remotely after the session.</li>
+      <li><strong>API keys:</strong> If the user chooses to enable AI guidance, they provide their own API key for OpenAI or Anthropic. This key is stored locally on the user's device using Chrome's <code>chrome.storage.local</code> API.</li>
+      <li><strong>User preferences:</strong> Settings such as the selected AI provider, model, and display language are stored locally on the user's device.</li>
+      <li><strong>Reading progress:</strong> The user's current Bible reading position (book and chapter) is stored locally on the user's device to allow seamless continuation across sessions.</li>
+      <li><strong>Favorite chapters:</strong> Chapters the user marks as favorites are stored locally on the user's device.</li>
+    </ul>
+
+    <h2>Data Processing</h2>
+    <p>Data is processed in the following ways:</p>
+    <ul>
+      <li><strong>Bible reading:</strong> All Bible text (KJV) and translations are bundled within the extension and loaded locally. Reading the Bible, navigating chapters, and viewing translations require <strong>no network requests</strong>.</li>
+      <li><strong>Verse search:</strong> When the user submits a concern, a local topic-based index is used to find relevant Bible verses. This search is performed entirely within the browser with no network activity.</li>
+      <li><strong>AI guidance:</strong> If AI guidance is enabled, the user's concern text (up to 500 characters), along with relevant Bible verses from the local search and a system prompt, is sent to the user's selected AI provider (OpenAI or Anthropic) via their API. The user's own API key is used for authentication. The AI-generated response is displayed to the user but is <strong>not</strong> saved to local storage or any remote server.</li>
+      <li><strong>Input safety:</strong> Before being sent to the AI provider, user input is sanitized (control characters removed, length enforced) and checked for prompt injection patterns. This processing happens entirely locally.</li>
+      <li><strong>All other operations</strong> (browsing the Bible, managing favorites, changing settings) are performed entirely locally with no network activity.</li>
+    </ul>
+
+    <h2>Third-Party Services</h2>
+    <p>When the user requests AI-powered guidance, the user's concern text and relevant Bible verses are sent to one of the following third-party API services, depending on the user's configuration:</p>
+    <ul>
+      <li><strong>OpenAI API</strong> (<a href="https://openai.com/privacy" target="_blank" rel="noopener">OpenAI Privacy Policy</a>)</li>
+      <li><strong>Anthropic API</strong> (<a href="https://www.anthropic.com/privacy" target="_blank" rel="noopener">Anthropic Privacy Policy</a>)</li>
+    </ul>
+    <p>The data sent to these services is governed by their respective privacy policies. The extension developer does not have access to the data transmitted between the user and these API providers. AI guidance is entirely optional — the extension functions fully as a Bible reader without it.</p>
+
+    <h2>Data Storage and Retention</h2>
+    <ul>
+      <li>All user data (API keys, preferences, reading progress, and favorites) is stored <strong>locally on the user's device</strong> using Chrome's storage API.</li>
+      <li>No data is sent to the extension developer or any server controlled by the extension developer.</li>
+      <li>No analytics, tracking, or telemetry data is collected.</li>
+      <li>AI guidance responses are displayed in the extension but are <strong>not</strong> persisted — they are lost when the user navigates away or closes the panel.</li>
+      <li>Settings, API keys, reading progress, and favorites are retained until the user changes or clears them, or uninstalls the extension.</li>
+    </ul>
+
+    <h2>Data Security</h2>
+    <p>All data is stored locally on the user's device using Chrome's <code>chrome.storage.local</code> API and is not accessible to other extensions or websites. API keys are transmitted only to the user's chosen AI provider (OpenAI or Anthropic) via HTTPS-encrypted connections and are included solely in request headers for authentication. User input is sanitized before processing to prevent misuse. No data is stored on any external server controlled by the extension developer.</p>
+
+    <h2>Data Sharing</h2>
+    <p>The extension does not sell, share, or transfer user data to any third party, except for the transmission of the user's concern text and relevant Bible verses to the user's chosen AI provider as described above.</p>
+    <p>The extension includes an optional donation button that opens a PayPal page (<code>paypal.me</code>) in a new browser tab. This action does not transmit any extension data — it simply navigates to an external URL.</p>
+
+    <h2>Permissions</h2>
+    <p>The extension requests the following browser permissions:</p>
+    <ul>
+      <li><strong>storage:</strong> Required to save user settings, API key, reading progress, and favorite chapters locally on the device.</li>
+      <li><strong>sidePanel:</strong> Required to display the extension interface in the browser sidebar.</li>
+      <li><strong>host_permissions (<code>https://api.openai.com/*</code>, <code>https://api.anthropic.com/*</code>):</strong> Required to send requests to the AI provider APIs when the user requests Scripture guidance. These permissions are limited to the API endpoints only.</li>
+    </ul>
+
+    <h2>User Control</h2>
+    <ul>
+      <li>Users can remove their API key at any time from the Settings tab.</li>
+      <li>Users can clear their favorite chapters at any time from the Bible Reader tab.</li>
+      <li>Users can use the extension as a Bible reader without enabling AI features.</li>
+      <li>Uninstalling the extension removes all locally stored data.</li>
+    </ul>
+
+    <h2>Changes to This Policy</h2>
+    <p>This privacy policy may be updated from time to time. Any changes will be reflected on this page with an updated effective date.</p>
+
+    <h2>Contact</h2>
+    <p>If you have any questions or concerns about this privacy policy, please contact us at <a href="mailto:lfmbs1027@gmail.com">lfmbs1027@gmail.com</a>.</p>
+
+    <p class="updated">Effective date: April 2, 2026</p>
+  </div>
+</body>
+</html>
