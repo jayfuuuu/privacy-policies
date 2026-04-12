@@ -37,7 +37,7 @@
     <p class="subtitle">Summarize Page – Chrome Extension</p>
 
     <h2>Overview</h2>
-    <p>Summarize Page is a browser extension that extracts article content from the current web page and sends it to a third-party AI service to generate a summary. This privacy policy explains what data is collected, how it is used, and how it is stored.</p>
+    <p>Summarize Page is a browser extension that extracts article content from the current web page or from the user's clipboard and sends it to a third-party AI service to generate a summary. This privacy policy explains what data is collected, how it is used, and how it is stored.</p>
 
     <h2>Personal Data</h2>
     <p>Summarize Page does <strong>not</strong> collect any personally identifiable information (PII) such as names, email addresses, or device identifiers. The extension does not require account creation or login. The only data processed relates to the content of web pages the user explicitly chooses to summarize.</p>
@@ -49,6 +49,7 @@
       <li><strong>API keys:</strong> The user provides their own API key for OpenAI or Anthropic. This key is stored locally on the user's device using Chrome's <code>chrome.storage.local</code> API.</li>
       <li><strong>User preferences:</strong> Settings such as the selected AI provider, model, and output language are stored locally on the user's device.</li>
       <li><strong>Summarization history:</strong> Past summaries (including the article title, URL, domain, model used, token counts, estimated cost, and the generated summary) are stored locally on the user's device. Up to 200 history entries are retained.</li>
+      <li><strong>Clipboard content:</strong> When the user clicks the "Summarize Clipboard" button, the text currently in the user's clipboard is read and sent to the AI provider for summarization. The clipboard is accessed only upon explicit user action and is not monitored in the background.</li>
     </ul>
 
     <h2>Data Processing</h2>
@@ -90,6 +91,7 @@
       <li><strong>scripting:</strong> Required to inject the content extraction script into the active tab.</li>
       <li><strong>storage:</strong> Required to save summarization history, user settings, and the API key locally on the device.</li>
       <li><strong>sidePanel:</strong> Required to display the summarization interface in the browser sidebar.</li>
+      <li><strong>clipboardRead:</strong> Required to read text content from the user's clipboard when the user clicks the "Summarize Clipboard" button.</li>
       <li><strong>host_permissions (<code>&lt;all_urls&gt;</code>):</strong> Required to allow the content extraction script to run on any webpage the user wishes to summarize.</li>
     </ul>
 
