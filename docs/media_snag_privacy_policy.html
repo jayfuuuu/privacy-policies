@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy – MediaSnag</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.7;
+      color: #1a1a1a;
+      background: #fafafa;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 12px;
+      padding: 48px 40px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    h1 { font-size: 28px; margin-bottom: 8px; }
+    .subtitle { color: #666; font-size: 14px; margin-bottom: 32px; }
+    h2 { font-size: 20px; margin: 28px 0 12px; }
+    p, li { font-size: 15px; margin-bottom: 12px; }
+    ul { padding-left: 24px; }
+    li { margin-bottom: 8px; }
+    a { color: #2563eb; }
+    .updated { margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; color: #999; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Privacy Policy</h1>
+    <p class="subtitle">MediaSnag – Chrome Extension</p>
+
+    <h2>Overview</h2>
+    <p>MediaSnag is a browser extension that detects video and audio streams (HLS, DASH, and direct media files) on webpages and allows users to download them. It operates entirely within the user's browser and does not transmit any data to external servers controlled by the extension developer. This privacy policy explains what data is accessed, how it is used, and how it is stored.</p>
+
+    <h2>Personal Data</h2>
+    <p>MediaSnag does <strong>not</strong> collect any personally identifiable information (PII) such as names, email addresses, or device identifiers. The extension does not require account creation or login. No analytics, tracking, or telemetry data is collected.</p>
+
+    <h2>Data Collection</h2>
+    <p>The extension accesses and processes the following data during normal operation:</p>
+    <ul>
+      <li><strong>Network request metadata:</strong> The extension monitors HTTP response headers (such as <code>content-type</code> and <code>content-length</code>) to detect media files on the pages the user visits. This data is held in memory only and is never persisted to disk or transmitted externally.</li>
+      <li><strong>Request headers:</strong> HTTP request headers associated with detected media are temporarily cached in memory for up to 10 minutes to facilitate downloads. They are automatically discarded after expiration.</li>
+      <li><strong>Page metadata:</strong> The page title, Open Graph title, thumbnail image URL, and favicon URL are collected from the active tab to display contextual information in the side panel. This data is held in memory only and is cleared when the tab is closed or navigates to a different origin.</li>
+      <li><strong>Download records:</strong> When the user initiates a download, a record containing the download ID, filename, status, and progress is stored locally on the user's device using Chrome's <code>chrome.storage.local</code> API.</li>
+      <li><strong>User preferences:</strong> Settings such as the "Save As dialog" toggle are stored locally on the user's device using <code>chrome.storage.local</code>.</li>
+    </ul>
+
+    <h2>Data Processing</h2>
+    <p>Data is processed in the following ways:</p>
+    <ul>
+      <li><strong>Media detection:</strong> The extension listens to network responses via the <code>webRequest</code> API and classifies media types based on response headers and URL patterns. This happens locally in the browser with no external communication.</li>
+      <li><strong>Stream resolution:</strong> For HLS streams, the extension fetches and parses <code>.m3u8</code> playlist files to extract segment URLs. For DASH streams, it fetches and parses <code>.mpd</code> manifest files. These fetches are made directly to the media server hosting the content — no data is routed through any intermediary.</li>
+      <li><strong>HLS download and remuxing:</strong> When the user initiates an HLS download, the extension creates an offscreen document that fetches individual stream segments, remuxes them into MP4 format, and assembles them into a single file. The resulting file is offered as a browser download. All processing occurs locally in the browser.</li>
+      <li><strong>Direct downloads:</strong> For non-streaming media, the extension triggers the download using Chrome's native <code>downloads</code> API without additional processing.</li>
+    </ul>
+
+    <h2>Third-Party Services</h2>
+    <p>MediaSnag does <strong>not</strong> integrate with any third-party APIs, analytics services, or external servers controlled by the extension developer. The only network requests made by the extension are to the media servers that host the content on the pages the user visits — these are the same servers the user's browser would normally communicate with.</p>
+
+    <h2>Data Storage and Retention</h2>
+    <ul>
+      <li>Download records and user preferences are stored <strong>locally on the user's device</strong> using Chrome's <code>chrome.storage.local</code> API.</li>
+      <li>No data is sent to the extension developer or any server controlled by the extension developer.</li>
+      <li>Tab-specific data (detected media, page metadata) is held in memory only and is automatically cleared when the tab is closed or navigates to a different origin.</li>
+      <li>Cached request headers are automatically discarded after 10 minutes.</li>
+      <li>Download records are retained locally until the user manually clears them or uninstalls the extension.</li>
+    </ul>
+
+    <h2>Data Security</h2>
+    <p>All data is stored locally on the user's device using Chrome's <code>chrome.storage.local</code> API and is not accessible to other extensions or websites. Network requests to media servers use the same connection security (HTTPS) as the original page. No data is stored on any external server controlled by the extension developer.</p>
+
+    <h2>Data Sharing</h2>
+    <p>The extension does not sell, share, or transfer user data to any third party. No data leaves the user's browser except for direct requests to media servers hosting the content the user chooses to download.</p>
+
+    <h2>Permissions</h2>
+    <p>The extension requests the following browser permissions:</p>
+    <ul>
+      <li><strong>webRequest:</strong> Required to monitor network responses and detect media files on webpages.</li>
+      <li><strong>downloads:</strong> Required to trigger and manage file downloads.</li>
+      <li><strong>sidePanel:</strong> Required to display the media detection and download interface in the browser sidebar.</li>
+      <li><strong>storage:</strong> Required to persist download records and user preferences locally on the device.</li>
+      <li><strong>tabs:</strong> Required to associate detected media with the correct browser tab and retrieve tab information.</li>
+      <li><strong>webNavigation:</strong> Required to detect page navigations and clean up tab-specific data when users navigate away.</li>
+      <li><strong>scripting:</strong> Required to inject a content script that extracts page metadata (title, thumbnail, favicon) for display in the side panel.</li>
+      <li><strong>activeTab:</strong> Required to interact with the currently active tab.</li>
+      <li><strong>offscreen:</strong> Required to create an offscreen document for fetching and remuxing HLS stream segments into downloadable files.</li>
+      <li><strong>host_permissions (<code>&lt;all_urls&gt;</code>):</strong> Required to detect media requests on any webpage the user visits.</li>
+    </ul>
+
+    <h2>User Control</h2>
+    <ul>
+      <li>Users can clear their download history at any time from the Downloads tab within the extension.</li>
+      <li>Users can cancel, pause, or resume active downloads at any time.</li>
+      <li>Uninstalling the extension removes all locally stored data.</li>
+    </ul>
+
+    <h2>International Users (GDPR)</h2>
+    <p>For users in the European Economic Area (EEA), any processing of data is based on legitimate interest to provide the core functionality of the extension. Since no personal data is stored or transmitted, user rights such as access, rectification, or deletion are inherently fulfilled. If you have questions about your data rights, please contact us using the information below.</p>
+
+    <h2>Children's Privacy</h2>
+    <p>This extension is not intended for use by individuals under the age of 13 (or 16 in certain jurisdictions). We do not knowingly collect any data from children.</p>
+
+    <h2>Changes to This Policy</h2>
+    <p>This privacy policy may be updated from time to time. Any changes will be reflected on this page with an updated effective date.</p>
+
+    <h2>Disclaimer</h2>
+    <p>MediaSnag is a general-purpose media detection and download tool that is not affiliated with, endorsed by, or connected to any website or content provider. It is intended for downloading content that users have the legal right to access, such as their own uploads, Creative Commons–licensed media, or content explicitly offered for download by the content provider.</p>
+    <p>The extension does not bypass, circumvent, or interfere with digital rights management (DRM), paywalls, or authentication mechanisms.</p>
+    <p>Downloading copyrighted material without the permission of the rights holder may violate applicable copyright laws, including but not limited to the Digital Millennium Copyright Act (DMCA) and equivalent legislation in other jurisdictions. Users are solely responsible for ensuring that their use of this extension complies with all applicable laws and the terms of service of the websites they visit.</p>
+    <p>The extension developer does not encourage, condone, or facilitate the unauthorized downloading of copyrighted content. The software is provided "as is", without warranty of any kind. In no event shall the developer be liable for any claim, damages, or other liability arising from the use of this software.</p>
+
+    <h2>Governing Law</h2>
+    <p>This Privacy Policy shall be governed by and construed in accordance with the laws of the Republic of China (Taiwan), without regard to conflict of law principles.</p>
+
+    <h2>Contact</h2>
+    <p>If you have any questions or concerns about this privacy policy, please contact us at <a href="mailto:jay.fu.ai@gmail.com">jay.fu.ai@gmail.com</a>.</p>
+    <p>Please also review our <a href="media_snag_terms_of_service.html">Terms of Service</a>.</p>
+
+    <p class="updated">Effective date: April 18, 2026</p>
+  </div>
+</body>
+</html>
