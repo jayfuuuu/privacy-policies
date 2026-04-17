@@ -59,6 +59,7 @@
       <li><strong>Stream resolution:</strong> For HLS streams, the extension fetches and parses <code>.m3u8</code> playlist files to extract segment URLs. For DASH streams, it fetches and parses <code>.mpd</code> manifest files. These fetches are made directly to the media server hosting the content — no data is routed through any intermediary.</li>
       <li><strong>HLS download and remuxing:</strong> When the user initiates an HLS download, the extension creates an offscreen document that fetches individual stream segments, remuxes them into MP4 format, and assembles them into a single file. The resulting file is offered as a browser download. All processing occurs locally in the browser.</li>
       <li><strong>Direct downloads:</strong> For non-streaming media, the extension triggers the download using Chrome's native <code>downloads</code> API without additional processing.</li>
+      <li><strong>DRM detection:</strong> The extension monitors calls to <code>navigator.requestMediaKeySystemAccess</code> solely to detect whether a page uses DRM-protected content. This detection is passive — it does not block, modify, or interfere with the DRM handshake, and no encryption keys or license data are accessed or stored.</li>
     </ul>
 
     <h2>Third-Party Services</h2>
@@ -91,7 +92,7 @@
       <li><strong>scripting:</strong> Required to inject a content script that extracts page metadata (title, thumbnail, favicon) for display in the side panel.</li>
       <li><strong>activeTab:</strong> Required to interact with the currently active tab.</li>
       <li><strong>offscreen:</strong> Required to create an offscreen document for fetching and remuxing HLS stream segments into downloadable files.</li>
-      <li><strong>host_permissions (<code>&lt;all_urls&gt;</code>):</strong> Required to detect media requests on any webpage the user visits.</li>
+      <li><strong>host_permissions (<code>&lt;all_urls&gt;</code>):</strong> Required to detect media requests on any webpage the user visits. The extension must monitor all URLs because media streams can be hosted on any domain or CDN. No data from these requests is transmitted externally.</li>
     </ul>
 
     <h2>User Control</h2>
@@ -102,7 +103,13 @@
     </ul>
 
     <h2>International Users (GDPR)</h2>
-    <p>For users in the European Economic Area (EEA), any processing of data is based on legitimate interest to provide the core functionality of the extension. Since no personal data is stored or transmitted, user rights such as access, rectification, or deletion are inherently fulfilled. If you have questions about your data rights, please contact us using the information below.</p>
+    <p>For users in the European Economic Area (EEA), the legal basis for any processing of data is legitimate interest under Article 6(1)(f) of the General Data Protection Regulation (GDPR), specifically to provide the core functionality of the extension. Since no personal data is collected, stored, or transmitted, data subject rights — including access (Art. 15), rectification (Art. 16), erasure (Art. 17), and data portability (Art. 20) — are inherently fulfilled. If you have questions about your data rights, please contact us using the information below.</p>
+
+    <h2>California Users (CCPA)</h2>
+    <p>Under the California Consumer Privacy Act (CCPA), California residents have the right to know what personal information is collected and to request its deletion. MediaSnag does not collect, sell, or share any personal information as defined by the CCPA. Because no personal information is processed, there is no data to disclose, delete, or opt out of.</p>
+
+    <h2>Do Not Track</h2>
+    <p>MediaSnag does not track users in any way and therefore does not need to respond to "Do Not Track" browser signals. No analytics, advertising, or tracking mechanisms are used.</p>
 
     <h2>Children's Privacy</h2>
     <p>This extension is not intended for use by individuals under the age of 13 (or 16 in certain jurisdictions). We do not knowingly collect any data from children.</p>
@@ -117,7 +124,7 @@
     <p>The extension developer does not encourage, condone, or facilitate the unauthorized downloading of copyrighted content. The software is provided "as is", without warranty of any kind. In no event shall the developer be liable for any claim, damages, or other liability arising from the use of this software.</p>
 
     <h2>Governing Law</h2>
-    <p>This Privacy Policy shall be governed by and construed in accordance with the laws of the Republic of China (Taiwan), without regard to conflict of law principles.</p>
+    <p>This Privacy Policy shall be governed by and construed in accordance with the laws of the Republic of China (Taiwan), without regard to conflict of law principles. For users in the European Economic Area, this does not affect your rights under the GDPR or any applicable local data protection laws.</p>
 
     <h2>Contact</h2>
     <p>If you have any questions or concerns about this privacy policy, please contact us at <a href="mailto:jay.fu.ai@gmail.com">jay.fu.ai@gmail.com</a>.</p>
