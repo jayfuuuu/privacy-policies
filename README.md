@@ -12,6 +12,7 @@ This repository hosts privacy policy pages for my personal projects, served via 
 | Lingalyze (Chrome Extension) | [View](https://jayfuuuu.github.io/privacy-policies/lingalyze_privacy_policy.html) | — |
 | Soul Guide (Chrome Extension) | [View](https://jayfuuuu.github.io/privacy-policies/soul_guide_privacy_policy.html) | — |
 | MediaSnag (Chrome Extension) | [View](https://jayfuuuu.github.io/privacy-policies/media_snag_privacy_policy.html) | [View](https://jayfuuuu.github.io/privacy-policies/media_snag_terms_of_service.html) |
+| Life Grid (iOS App) | [View](https://jayfuuuu.github.io/privacy-policies/life_grid_privacy_policy.html) | [View](https://jayfuuuu.github.io/privacy-policies/life_grid_terms_of_use.html) |
 
 ## Contact
 
