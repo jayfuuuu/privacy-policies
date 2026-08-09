@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy – Allure Lens</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.7;
+      color: #1a1a1a;
+      background: #fafafa;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 12px;
+      padding: 48px 40px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    h1 { font-size: 28px; margin-bottom: 8px; }
+    .subtitle { color: #666; font-size: 14px; margin-bottom: 32px; }
+    h2 { font-size: 20px; margin: 28px 0 12px; }
+    p, li { font-size: 15px; margin-bottom: 12px; }
+    ul { padding-left: 24px; }
+    li { margin-bottom: 8px; }
+    a { color: #2563eb; }
+    .updated { margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; color: #999; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Privacy Policy</h1>
+    <p class="subtitle">Allure Lens – Chrome Extension</p>
+
+    <h2>Overview</h2>
+    <p>Allure Lens is a browser extension that analyzes Allure test reports (both Allure 2 and Allure 3) directly in Chrome's side panel — showing durations, flaky tests, a failure checklist with rerun markers, and snapshot history comparison. It operates entirely within the user's browser and does not transmit any data to external servers controlled by the extension developer. This privacy policy explains what data is accessed, how it is used, and how it is stored.</p>
+
+    <h2>Personal Data</h2>
+    <p>Allure Lens does <strong>not</strong> collect any personally identifiable information (PII) such as names, email addresses, or device identifiers. The extension does not require account creation or login. No analytics, tracking, or telemetry data is collected.</p>
+
+    <h2>Data Collection</h2>
+    <p>The extension accesses and processes the following data during normal operation:</p>
+    <ul>
+      <li><strong>Allure report data:</strong> When you open an Allure report page, the extension reads the report's data files — for Allure 2, <code>data/suites.json</code> and each failed case's <code>data/test-cases/{uid}.json</code>; for Allure 3, <code>widgets/tree.json</code> and each failed case's <code>data/test-results/{id}.json</code>. This includes test names, suite paths, statuses, durations, flaky flags, and failure messages. These requests go directly to the report host you are viewing and the parsed results are held in memory and cached locally for analysis.</li>
+      <li><strong>Active tab URL:</strong> The extension reads the current tab's URL to detect whether it points at an Allure report and to derive a short report key (e.g. <code>Book_B_C/WAP/105</code>) for labelling. This is used locally only.</li>
+      <li><strong>Failure triage &amp; notes:</strong> The check status you assign to each failed case (Pass / Fail / Skip) and any free-text you type (e.g. a ticket reference such as <code>SB-1234</code> or a skip reason) are stored locally on your device using Chrome's <code>chrome.storage.local</code> API.</li>
+      <li><strong>Report snapshots:</strong> When you save a snapshot in the History tab, aggregate metrics and a per-case summary (name, status, duration, flaky flag, suite path) are stored locally so you can compare runs later.</li>
+      <li><strong>User preferences:</strong> Your filter, tab order/visibility, and theme (light/dark/system and accent color) preferences are stored locally using <code>chrome.storage.local</code>.</li>
+    </ul>
+
+    <h2>Data Processing</h2>
+    <p>Data is processed in the following ways:</p>
+    <ul>
+      <li><strong>Report detection:</strong> The extension inspects the active tab's URL for an Allure report path and probes for the report's data files to determine whether it is an Allure 2 or Allure 3 report. This happens locally in the browser.</li>
+      <li><strong>Report fetching:</strong> The extension fetches the report's JSON data files directly from the host serving the report you are viewing, using your existing session (requests are sent with <code>credentials: "include"</code> so your already-logged-in cookies are used, exactly as your browser would when loading the report). No data is routed through any intermediary or developer-controlled server.</li>
+      <li><strong>Analysis &amp; rendering:</strong> Test cases are parsed, filtered, sorted, and grouped locally to render the durations list, flaky list, failure checklist, rerun markers, chat summaries, and history comparisons. All processing occurs in the browser.</li>
+      <li><strong>Clipboard:</strong> When you click a Copy action (e.g. a rerun marker or a comparison summary), the generated text is written to your system clipboard at your request. Nothing is transmitted externally.</li>
+    </ul>
+
+    <h2>Third-Party Services</h2>
+    <p>Allure Lens does <strong>not</strong> integrate with any third-party APIs, analytics services, or external servers controlled by the extension developer. The only network requests made by the extension are to the report host you are viewing, to read that report's own data files — the same server your browser already communicates with to display the report.</p>
+    <p>The side panel includes an optional "Buy me a coffee" support button. It is a plain link that, only when you click it, opens a third-party payment page (PayPal) in a new browser tab. No personal data is sent by the extension when the link is opened; any information you choose to provide on that page is handled by that third party under its own privacy policy.</p>
+
+    <h2>Data Storage and Retention</h2>
+    <ul>
+      <li>Failure triage states, notes, saved snapshots, and preferences are stored <strong>locally on the user's device</strong> using Chrome's <code>chrome.storage.local</code> API.</li>
+      <li>No data is sent to the extension developer or any server controlled by the extension developer.</li>
+      <li>Fetched report data is held in memory and in a local cache for the current session to avoid redundant network requests; it is not transmitted anywhere.</li>
+      <li>Saved snapshots and triage states are retained locally until you delete them within the extension or uninstall the extension. The extension keeps at most the 50 most recent snapshots, dropping the oldest automatically.</li>
+    </ul>
+
+    <h2>Data Security</h2>
+    <p>All persisted data is stored locally on the user's device using Chrome's <code>chrome.storage.local</code> API and is not accessible to other extensions or websites. Network requests to report hosts use the same connection security (HTTPS where the site uses it) as the original page. No data is stored on any external server controlled by the extension developer.</p>
+
+    <h2>Data Sharing</h2>
+    <p>The extension does not sell, share, or transfer user data to any third party. No data leaves the user's browser except for direct requests to the report host serving the report you are viewing, and — only if you click the optional "Buy me a coffee" button — navigation to a third-party payment page in a new tab. Any exported text (rerun markers, chat summaries, comparison summaries) is placed on your clipboard only when you explicitly trigger a Copy action, and it is up to you where you paste it.</p>
+
+    <h2>Permissions</h2>
+    <p>The extension requests the following browser permissions:</p>
+    <ul>
+      <li><strong>sidePanel:</strong> Required to display the analysis interface in the browser sidebar.</li>
+      <li><strong>storage / unlimitedStorage:</strong> Required to persist failure triage states, notes, snapshots, and preferences locally on the device.</li>
+      <li><strong>tabs:</strong> Required to read the active tab's URL in order to detect the Allure report you are viewing.</li>
+      <li><strong>optional_host_permissions (<code>https://*/*</code>, <code>http://*/*</code>):</strong> Not granted by default. The extension requests access to a specific report domain only when you add it in the <em>Domains</em> settings and approve Chrome's permission prompt. This access is used solely to read that host's Allure report data files, and you can remove any granted domain at any time from the settings.</li>
+    </ul>
+
+    <h2>User Control</h2>
+    <ul>
+      <li>You choose which report domains the extension may read from, and can add or remove them anytime in the extension's Domain settings.</li>
+      <li>You can edit or clear failure triage states and notes, and delete saved snapshots, at any time within the extension.</li>
+      <li>Uninstalling the extension removes all locally stored data.</li>
+    </ul>
+
+    <h2>International Users (GDPR)</h2>
+    <p>For users in the European Economic Area (EEA), the legal basis for any processing of data is legitimate interest under Article 6(1)(f) of the General Data Protection Regulation (GDPR), specifically to provide the core functionality of the extension. Since no personal data is collected, stored, or transmitted to the developer, data subject rights — including access (Art. 15), rectification (Art. 16), erasure (Art. 17), and data portability (Art. 20) — are inherently fulfilled, as all data remains under your control on your own device. If you have questions about your data rights, please contact us using the information below.</p>
+
+    <h2>California Users (CCPA)</h2>
+    <p>Under the California Consumer Privacy Act (CCPA), California residents have the right to know what personal information is collected and to request its deletion. Allure Lens does not collect, sell, or share any personal information as defined by the CCPA. Because no personal information is processed by the developer, there is no data to disclose, delete, or opt out of.</p>
+
+    <h2>Do Not Track</h2>
+    <p>Allure Lens does not track users in any way and therefore does not need to respond to "Do Not Track" browser signals. No analytics, advertising, or tracking mechanisms are used.</p>
+
+    <h2>Children's Privacy</h2>
+    <p>This extension is not intended for use by individuals under the age of 13 (or 16 in certain jurisdictions). We do not knowingly collect any data from children.</p>
+
+    <h2>Changes to This Policy</h2>
+    <p>This privacy policy may be updated from time to time. Any changes will be reflected on this page with an updated effective date.</p>
+
+    <h2>Disclaimer</h2>
+    <p>Allure Lens is an independent, general-purpose tool for viewing and analyzing Allure test reports. It is not affiliated with, endorsed by, or connected to Qameta Software or the Allure Report project. "Allure" is used only to describe the report format the extension reads. The extension reads report data that you already have access to in your browser; you are responsible for ensuring your use complies with the policies of the systems that host your reports. The software is provided "as is", without warranty of any kind. In no event shall the developer be liable for any claim, damages, or other liability arising from the use of this software.</p>
+
+    <h2>Governing Law</h2>
+    <p>This Privacy Policy shall be governed by and construed in accordance with the laws of the Republic of China (Taiwan), without regard to conflict of law principles. For users in the European Economic Area, this does not affect your rights under the GDPR or any applicable local data protection laws.</p>
+
+    <h2>Contact</h2>
+    <p>If you have any questions or concerns about this privacy policy, please contact us at <a href="mailto:jay.fu.ai@gmail.com">jay.fu.ai@gmail.com</a>.</p>
+
+    <p class="updated">Effective date: August 9, 2026</p>
+  </div>
+</body>
+</html>
