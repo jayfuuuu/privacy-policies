@@ -14,6 +14,7 @@ This repository hosts privacy policy pages for my personal projects, served via 
 | MediaSnag (Chrome Extension) | [View](https://jayfuuuu.github.io/privacy-policies/media_snag_privacy_policy.html) | [View](https://jayfuuuu.github.io/privacy-policies/media_snag_terms_of_service.html) |
 | Allure Lens (Chrome Extension) | [View](https://jayfuuuu.github.io/privacy-policies/allure_lens_privacy_policy.html) | — |
 | Life Grid (App) | [View](https://jayfuuuu.github.io/privacy-policies/life_grid_privacy_policy.html) | [View](https://jayfuuuu.github.io/privacy-policies/life_grid_terms_of_use.html) |
+| FinSight (App) | [View](https://jayfuuuu.github.io/privacy-policies/fin_sight_privacy_policy.html) | — |
 
 ## Contact
 
